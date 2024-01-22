@@ -14,8 +14,12 @@ function getLink() {
   var updatedUrl = currentUrl.replace(/submit$/, "review");
   updatedUrl += "/" + postID;
 
-  chrome.storage.sync.set({ link: updatedUrl, success: true });
+  var regex = /\/review\//;
+  var successValue = regex.test(updatedUrl);
+
+  chrome.storage.sync.set({ link: updatedUrl, success: successValue });
 }
+
 
 function failHandler() {
   document.getElementById("edwuitqe").style.display = "none";
